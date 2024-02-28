@@ -19,6 +19,14 @@ class MyClient(discord.Client):
         print('Message from {0.author}: {0.content}'.format(message))
         if message.content == '?regras':
             await message.channel.send(f'{message.author.name} as regras do servidor são:\n1 - Não falar sobre o clube da luta')
+        elif message.content == '?nivel':
+            await message.author.send('Nível 1')
+
+    async def on_member_join(self, member):
+        guild = member.guild
+        if guild.system_channel_id is not None:
+            mensagem = f'{member.mention} acabou de entrar no {guild.name}'
+            await guild.system_channel.send(mensagem)
 
 client = MyClient(intents=intents)
 client.run(f'{key}')
