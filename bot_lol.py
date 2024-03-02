@@ -1,6 +1,7 @@
+from discord.ext import commands
+from dotenv import load_dotenv
 import discord
 import os
-from dotenv import load_dotenv
 
 intents = discord.Intents.default()
 intents.typing = False
@@ -9,7 +10,8 @@ intents.members = True
 intents.message_content = True
 
 load_dotenv()
-key = os.getenv("key")
+key_discord = os.getenv("key_discord_lol")
+key_lol = os.getenv("key_lol")
 
 class MyClient(discord.Client):
     async def on_ready(self):
@@ -29,4 +31,4 @@ class MyClient(discord.Client):
             await guild.system_channel.send(mensagem)
 
 client = MyClient(intents=intents)
-client.run(f'{key}')
+client.run(f'{key_discord}')
